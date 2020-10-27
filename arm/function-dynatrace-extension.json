@@ -51,9 +51,6 @@
                 },
                 "serverFarmId": "[parameters('app_svc_plan_id')]"
             },
-            "dependsOn": [
-                "[concat('Microsoft.Web/serverfarms/', parameters('app_svc_plan'))]"
-            ],
             "location": "[parameters('location')]",
             "resources": [
                 {
