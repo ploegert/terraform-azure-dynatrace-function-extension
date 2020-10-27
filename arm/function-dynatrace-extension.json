@@ -1,0 +1,70 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "app_svc_plan": {
+            "type": "string"
+        },
+        "DT_TENANT": {
+            "type": "string"
+        },
+        "DT_API_TOKEN": {
+            "type": "string"
+        },
+        "DT_API_URL": {
+            "type": "string"
+        },
+        "location": {
+            "type": "string",
+            "defaultValue": "East US 2"
+        }
+    },
+    "variables": {
+    },
+    "resources": 
+    [
+        {
+            "apiVersion": "2016-08-01",
+            "name": "[parameters('app_svc_plan')]",
+            "type": "Microsoft.Web/sites",
+            "properties": {
+                "name": "[parameters('app_svc_plan')]",
+                "siteConfig": {
+                    "alwaysOn": true,
+                    "appSettings": [
+                        {
+                            "Name": "DT_TENANT",
+                            "Value": "[parameters('DT_TENANT')]"
+                        },
+                        {
+                            "Name": "DT_API_TOKEN",
+                            "Value": "[parameters('DT_API_TOKEN')]"
+                        },
+                        {
+                            "Name": "DT_API_URL",
+                            "Value": "[parameters('DT_API_URL')]"
+                        }
+                    ]
+                },
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('app_svc_plan'))]"
+            },
+            "dependsOn": [
+                "[concat('Microsoft.Web/serverfarms/', parameters('app_svc_plan'))]"
+            ],
+            "location": "[parameters('location')]",
+            "resources": [
+                {
+                    "apiVersion": "2016-08-01",
+                    "name": "Dynatrace",
+                    "type": "siteextensions",
+                    "dependsOn": [
+                        "[resourceId('Microsoft.Web/sites', parameters('app_svc_plan'))]"
+                    ],
+                    "properties": {}
+                }
+            ]
+        }
+    ],
+    "outputs": {
+    }
+}
