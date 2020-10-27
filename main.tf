@@ -21,9 +21,9 @@ resource "azurerm_template_deployment" "dynatrace_functions_extension" {
 
     parameters = {
         app_svc_plan    = data.azurerm_app_service_plan.obc_asp.id
-        DT_TENANT       = var.DT_TENANT
-        DT_API_TOKEN    = var.DT_API_TOKEN
-        DT_API_URL      = var.DT_API_URL
+        DT_TENANT       = var.dynatrace.DT_TENANT
+        DT_API_TOKEN    = var.dynatrace.DT_API_TOKEN
+        DT_API_URL      = var.dynatrace.DT_API_URL
         location        = var.location
     }
     deployment_mode = "Incremental"
