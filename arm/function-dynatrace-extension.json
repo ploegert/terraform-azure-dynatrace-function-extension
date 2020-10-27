@@ -46,7 +46,7 @@
                         }
                     ]
                 },
-                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('app_svc_plan'))]"
+                "serverFarmId": "[parameters('app_svc_plan')]"
             },
             "dependsOn": [
                 "[concat('Microsoft.Web/serverfarms/', parameters('app_svc_plan'))]"
@@ -54,7 +54,7 @@
             "location": "[parameters('location')]",
             "resources": [
                 {
-                    "apiVersion": "2016-08-01",
+                    "apiVersion": "2018-11-01",
                     "name": "Dynatrace",
                     "type": "siteextensions",
                     "dependsOn": [
