@@ -20,7 +20,8 @@ resource "azurerm_template_deployment" "dynatrace_functions_extension" {
     template_body       = file("${path.module}/arm/function-dynatrace-extension.json")
 
     parameters = {
-        app_svc_plan    = data.azurerm_app_service_plan.obc_asp.id
+        app_svc_plan_id = data.azurerm_app_service_plan.obc_asp.id
+        app_svc_plan    = var.app_service_plan_name
         DT_TENANT       = var.dynatrace.DT_TENANT
         DT_API_TOKEN    = var.dynatrace.DT_API_TOKEN
         DT_API_URL      = var.dynatrace.DT_API_URL
