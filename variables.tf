@@ -27,15 +27,15 @@ variable "location" {
   default = "East US 2"
   description = "The location the various resources are deployed into"
 }
-variable "DT_TENANT" {
-  #default = ""
-  description = "Provide the tenant or environment id descriptor"
-}
-variable "DT_API_TOKEN" {
-  #default = ""
-  description = "	Provide the API token associated with dynatrace"
-}
-variable "DT_API_URL" {
-  default = ""
-  description = "Optional: Provide this property to configure an alternative communication endpoint"
+
+
+# ==================================================
+# dynatrace Variables:
+# ==================================================
+variable "dynatrace" {
+  type = object({
+    DT_TENANT = string
+    DT_API_TOKEN = string
+    DT_API_URL = string
+  })
 }
