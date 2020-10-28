@@ -16,11 +16,12 @@ variable "deployment" {
 # ==================================================
 
 variable "app_service_plan_name" {
-  #default = ""
+  description = "The name of the app service that we will install the extension to"
+}
+variable "app_service_name" {
   description = "The name of the app service that we will install the extension to"
 }
 variable "resource_group_name" {
-  #default = ""
   description = "the resource group the app service plan exists in"
 }
 variable "location" {
